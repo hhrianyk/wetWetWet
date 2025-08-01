@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- Вказуємо тип документа та мову сторінки -->
+<html lang="uk">
+<head>
+    <!-- Мета-теги для коректного відображення на різних пристроях -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Динамічний заголовок сторінки, який змінюється в залежності від відображуваного міста -->
+    <title>Погода Онлайн - {{ weather.city if weather else "Метеостанція" }}</title>
+
+    <!-- Підключення CSS-стилів -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Бібліотека іконок погоди -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+    <!-- Шрифт Montserrat з Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Бібліотека Font Awesome для іконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Основна обгортка додатку -->
+    <div class="container">
+        <div class="weather-app">
+            <!-- Шапка додатку -->
+            <header class="app-header">
+                <h1><i class="wi wi-day-sunny"></i> Погода Онлайн</h1>
+                <p class="subtitle">Актуальні метеодані у реальному часі</p>
+            </header>
+
+            <!-- Форма пошуку міста -->
+            <form method="POST" class="search-form">
+                <!-- Поле введення міста з плейсхолдером -->
+                <input type="text" name="city" placeholder="Введіть місто" value="{{ city }}" required>
+                <!-- Кнопка пошуку з іконкою -->
+                <button type="submit" title="Пошук"><i class="fas fa-search"></i></button>
+            </form>
+
+            <!-- Блок з інформацією про погоду -->
+            {% if weather %}
+                <div class="weather-card">
+                    <!-- Місцезнаходження та час оновлення -->
+                    <div class="location">
+                        <h2>{{ weather.city }}, {{ weather.country }}</h2>
+                        <p class="update-time">Оновлено: {{ weather.update_time }}</p>
+                    </div>
+
+                    <!-- Основна інформація про погоду -->
+                    <div class="weather-main">
+                        <!-- Іконка погоди з бібліотеки weather-icons -->
+                        <i class="wi wi-{{ weather.icon }} weather-icon"></i>
+                        <!-- Температура -->
+                        <div class="temperature">{{ weather.temperature }}°C</div>
+                        <!-- Опис погоди -->
+                        <p class="description">{{ weather.description }}</p>
+                    </div>
+
+                    <!-- Детальна інформація про погоду -->
+                    <div class="weather-details">
+                        <!-- Відчувається температура -->
+                        <div class="detail">
+                            <i class="wi wi-thermometer"></i>
+                            <span>Відчувається: {{ weather.feels_like }}°C</span>
+                        </div>
+                        <!-- Вологість -->
+                        <div class="detail">
+                            <i class="wi wi-humidity"></i>
+                            <span>Вологість: {{ weather.humidity }}%</span>
+                        </div>
+                        <!-- Вітер -->
+                        <div class="detail">
+                            <i class="wi wi-strong-wind"></i>
+                            <span>Вітер: {{ weather.wind }} м/с</span>
+                        </div>
+                        <!-- Атмосферний тиск -->
+                        <div class="detail">
+                            <i class="wi wi-barometer"></i>
+                            <span>Тиск: {{ weather.pressure }} гПа</span>
+                        </div>
+                        <!-- Час сходу сонця -->
+                        <div class="detail">
+                            <i class="wi wi-sunrise"></i>
+                            <span>Схід: {{ weather.sunrise }}</span>
+                        </div>
+                        <!-- Час заходу сонця -->
+                        <div class="detail">
+                            <i class="wi wi-sunset"></i>
+                            <span>Захід: {{ weather.sunset }}</span>
+                        </div>
+                        <!-- Хмарність -->
+                        <div class="detail">
+                            <i class="wi wi-cloud"></i>
+                            <span>Хмарність: {{ weather.clouds }}%</span>
+                        </div>
+                        <!-- Опади -->
+                        <div class="detail">
+                            <i class="wi wi-rain"></i>
+                            <span>Опади: {{ weather.precipitation }} мм</span>
+                        </div>
+                    </div>
+
+
+            <!-- Блок помилки, якщо місто не знайдено -->
+            {% elif weather is none %}
+                <div class="error-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Місто не знайдено</h3>
+                    <p>Будь ласка, перевірте правильність написання та спробуйте ще раз</p>
+                </div>
+            {% endif %}
+
+            <!-- Підвал додатку (поки порожній) -->
+            <footer class="app-footer">
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>

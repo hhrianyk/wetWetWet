@@ -1,0 +1,240 @@
+ :root {
+    /* Глобальні змінні кольорів (зручно для редизайну) */
+    --primary: #4facfe;         /* Основний колір градієнта (синій) */
+    --secondary: #00f2fe;       /* Другий колір градієнта (бірюзовий) */
+    --accent: #ffb347;          /* Акцентний колір кнопок (помаранчевий) */
+    --text: #fff;               /* Основний колір тексту (білий) */
+    --card-bg: rgba(255, 255, 255, 0.15); /* Напівпрозорий фон карток (glassmorphism) */
+    --error: #ff4f4f;            /* Червоний колір для помилок */
+    --success: #4caf50;          /* Зелений колір для повідомлень успіху */
+}
+body {
+    /* Загальні налаштування сторінки */
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, var(--primary), var(--secondary)); /* Градієнтний фон */
+    display: flex;
+    justify-content: center;   /* Центрування по горизонталі */
+    align-items: flex-start;   /* Початок зверху по вертикалі */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: var(--text);        /* Білий колір тексту */
+}
+.container {
+    /* Основний контейнер додатку */
+    background: var(--card-bg);        /* Прозорий фон */
+    padding: 30px;
+    border-radius: 20px;               /* Закруглені кути */
+    text-align: center;
+    backdrop-filter: blur(10px);       /* Ефект розмиття (glassmorphism) */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* М'яка тінь */
+    width: 100%;
+    max-width: 400px;                  /* Максимальна ширина */
+    margin: 20px 0;
+    transition: all 0.3s ease;         /* Плавні зміни при ховері або resize */
+}
+.app-header {
+    margin-bottom: 25px;
+}
+
+.app-header h1 {
+    /* Заголовок додатку */
+    margin: 0;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Відступ між іконкою та текстом */
+}
+
+.subtitle {
+    margin-top: 5px;
+    font-size: 14px;
+    opacity: 0.8; /* Легке затемнення */
+}
+.app-header {
+    margin-bottom: 25px;
+}
+
+.app-header h1 {
+    /* Заголовок додатку */
+    margin: 0;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Відступ між іконкою та текстом */
+}
+
+.subtitle {
+    margin-top: 5px;
+    font-size: 14px;
+    opacity: 0.8; /* Легке затемнення */
+}
+.search-form {
+    /* Форма пошуку */
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-form input {
+    /* Поле введення міста */
+    padding: 12px 15px;
+    border: none;
+    border-radius: 10px 0 0 10px; /* Закруглення зліва */
+    outline: none;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s;
+}
+
+.search-form input:focus {
+    background: white;
+}
+
+.search-form button {
+    /* Кнопка пошуку */
+    padding: 12px 20px;
+    background: var(--accent);
+    border: none;
+    border-radius: 0 10px 10px 0; /* Закруглення справа */
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-form button:hover {
+    background: #ff9845; /* Темніший помаранчевий при наведенні */
+}
+.weather-card {
+    /* Картка з погодою */
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 20px;
+    border-radius: 15px;
+    animation: fadeIn 0.5s ease; /* Анімація появи */
+}
+
+.location h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.update-time {
+    font-size: 12px;
+    opacity: 0.7;
+}
+.weather-main {
+    /* Основна інформація про погоду */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.weather-icon {
+    font-size: 64px;
+    margin-bottom: 10px;
+}
+
+.temperature {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.description {
+    font-size: 18px;
+    text-transform: capitalize;
+    margin: 5px 0;
+}
+.weather-details {
+    /* Деталі погоди у вигляді сітки */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.detail i {
+    font-size: 20px;
+    opacity: 0.8;
+}
+.error-card {
+    /* Повідомлення про помилку */
+    margin-top: 20px;
+    background: rgba(255, 79, 79, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    animation: fadeIn 0.5s ease;
+}
+
+.error-card i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.error-card h3 {
+    margin: 0 0 5px 0;
+}
+.app-footer {
+    /* Нижня частина додатку */
+    margin-top: 25px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.app-footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.app-footer a:hover {
+    text-decoration: underline;
+}
+.unit-toggle {
+    /* Перемикач одиниць вимірювання (°C / °F) */
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.unit-toggle button {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.unit-toggle button.active {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+}
+
+.unit-toggle button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+@keyframes fadeIn {
+    /* Анімація появи елементів */
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
