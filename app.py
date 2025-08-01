@@ -72,5 +72,5 @@ def index():
 
 
     # Запускаємо Flask-додаток на 0.0.0.0 (доступ з усіх IP)
-port = int(os.environ.get('PORT', 5000))  # Можна змінити через змінну середовища PORT
-app.run(host="0.0.0.0", port=port, debug=False)
+port = int(os.environ.get('PORT', 5000))
+app.run(host='0.0.0.0', port=port, debug=False)
